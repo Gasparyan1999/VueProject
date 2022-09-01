@@ -26,6 +26,10 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+#app {
+  display: flex;
+  justify-content: center;
+}
 .app {
   display: flex;
   width: 400px;
@@ -33,7 +37,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
   border: solid 1px black;
   row-gap: 10px;
 }
