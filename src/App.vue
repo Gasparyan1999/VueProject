@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  
 import { useNumberStore } from "./store/store";
 import HeaderComponent from "./component/HeaderComponent.vue";
 import CardComponent from "./component/CardComponent.vue";
@@ -68,7 +69,6 @@ export default {
   width: 550px;
   height: 100%;
 }
-
 .container {
   display: grid;
   width: 100%;

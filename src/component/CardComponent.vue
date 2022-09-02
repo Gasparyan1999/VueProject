@@ -1,12 +1,14 @@
 <template>
-  <div class="card" v-for="num in numbersArray" :key="num.id">
-    <h3 class="deleteButton" v-on:click="remove(num.id)">✖</h3>
-    <h2 class="number">{{ num.num }}</h2>
+  <div class="card" v-for="elements in numbersArray" :key="elements.id">
+    <h3 class="deleteButton" v-on:click="remove(elements.id)">✖</h3>
+    <h2 class="number">{{ elements.num }}</h2>
   </div>
 </template>
 
 <script>
+
 import { useNumberStore } from "../store/store";
+
 export default {
   setup() {
     const number = useNumberStore();

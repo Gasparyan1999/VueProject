@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  
 import { useNumberStore } from "../store/store";
 
 export default {

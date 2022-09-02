@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { VUE_APP_REQUEST_ADDRESS } from "../.env";
 
 export const useNumberStore = defineStore({
   id: "numbers",
@@ -6,10 +7,9 @@ export const useNumberStore = defineStore({
   actions: {
     async cards() {
       try {
-        await fetch(" http://localhost:3000")
+        await fetch(VUE_APP_REQUEST_ADDRESS)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             this.array = data;
           });
       } catch (error) {
@@ -17,18 +17,17 @@ export const useNumberStore = defineStore({
       }
     },
     async add() {
-      this.array.push({
+      const newObject = {
         num: Math.floor(Math.random() * 1000),
         id: Date.now() + Math.random() * 1000,
-      });
+      };
       try {
-        const test = await fetch("http://localhost:3000/", {
+        await fetch(VUE_APP_REQUEST_ADDRESS, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify([this.array[this.array.length - 1]]),
+          body: JSON.stringify([newObject]),
         });
-        const result = await test.json();
-        console.log(result);
+        this.array.push(newObject);
       } catch (error) {
         console.error(error);
       }
@@ -38,16 +37,13 @@ export const useNumberStore = defineStore({
       localStorage.setItem("card", JSON.stringify(this.array));
     },
     async remove(id) {
-      this.array = this.array.filter((elem) => elem.id != id);
-
       try {
-        const test = await fetch("http://localhost:3000/", {
+        await fetch(VUE_APP_REQUEST_ADDRESS, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify([id]),
         });
-        const result = await test.json();
-        console.log(result);
+        this.array = this.array.filter((elem) => elem.id != id);
       } catch (error) {
         console.error(error);
       }
