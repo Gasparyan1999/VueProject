@@ -1,6 +1,6 @@
 <template>
-  <div class="card" v-for="num in numbers" :key="num.id">
-    <h3 class="delete" v-on:click="remove(num.id)">✖</h3>
+  <div class="card" v-for="num in numbersArray" :key="num.id">
+    <h3 class="deleteButton" v-on:click="remove(num.id)">✖</h3>
     <h2 class="number">{{ num.num }}</h2>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
     return { remove };
   },
   props: {
-    numbers: {
+    numbersArray: {
       type: Array,
       require: true,
     },
@@ -32,7 +32,7 @@ export default {
   justify-content: center;
   border: solid 1px black;
 }
-.delete {
+.deleteButton {
   position: absolute;
   display: flex;
   justify-content: center;

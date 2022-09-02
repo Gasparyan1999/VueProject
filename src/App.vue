@@ -1,12 +1,9 @@
 <template>
   <div class="app">
     <div class="main">
-      <div class="header">
-        <button v-on:click="add">Add Card</button>
-        <button v-on:click="sort">Sort Cards</button>
-      </div>
+      <HeaderComponent />
       <div class="container">
-        <MyCard :numbers="$state.array" />
+        <CardComponent :numbersArray="$state.array" />
       </div>
       <div class="footer">
         <h4>Learning SolicyTask</h4>
@@ -24,14 +21,19 @@
 
 <script>
 import { useNumberStore } from "./store/store";
-import MyCard from "./component/MyCard.vue";
+import HeaderComponent from "./component/HeaderComponent.vue";
+import CardComponent from "./component/CardComponent.vue";
+
 export default {
   setup() {
     const number = useNumberStore();
+
+    number.cards();
+
     const { add, sort, $state } = number;
     return { add, sort, $state };
   },
-  components: { MyCard },
+  components: { HeaderComponent, CardComponent },
 };
 </script>
 
@@ -66,36 +68,20 @@ export default {
   width: 550px;
   height: 100%;
 }
-.header {
-  display: flex;
-  width: 100%;
-  height: 80px;
-  align-items: center;
-  border-bottom: solid 1px black;
-}
-button {
-  margin-left: 40px;
-  background-color: white;
-  width: 100px;
-  height: 45px;
-  cursor: pointer;
-}
+
 .container {
   display: grid;
   width: 100%;
-  height: 520px;
+  height: 80%;
   border-bottom: 1px solid black;
   overflow-y: auto;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
-  padding-top: 10px;
-  padding-right: 12%;
-  padding-left: 12%;
-  padding-bottom: 10px;
+  padding: 10px 12%;
 }
 .footer {
   width: 100%;
-  height: 100px;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
